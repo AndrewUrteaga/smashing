@@ -1,0 +1,19 @@
+<div class=" card login-form col-md-6 flexbox-center">
+  <form  #loginForm='ngForm' (ngSubmit)='login(loginForm.value)'  method="post">
+      <h2 class="text-center">Log in</h2>       
+      <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]='username' name='username' placeholder="Username" 
+            required>
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" [(ngModel)]='password' name='password' placeholder="Password" 
+            required>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </div>       
+  </form>
+  
+  <div *ngIf = "loginInvalid" class="alert alert-danger"> Invalid Login Info</div>
+  <p class="text-center"><a routerLink='/register'>Create an Account</a></p>
+</div>

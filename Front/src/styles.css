@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+.active {
+    font-weight: bold
+}
+
+body {
+background-color: rgb(175, 167, 167)
+}
+
+.table-hover tbody tr:hover td {
+    background-color:rgb(188, 208, 225)
+  }

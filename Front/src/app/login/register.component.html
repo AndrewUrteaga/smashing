@@ -1,0 +1,48 @@
+<div class="card col-sm-4 mx-auto" >
+  <div class='card-body'>
+    <form #registerForm='ngForm' (ngSubmit)='register(registerForm.value)' method='POST'>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input name='name' type="fullName" class="form-control" id="fullName" placeholder="e.g. James Jamison" ngModel required>
+        </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input name='username' class="form-control" id="Username"  placeholder="Enter Username"  ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input name='password' type="password" class="form-control" id="password" placeholder="Password"  ngModel required>
+      </div>
+        <div class="form-group">
+            <label for="main">Main Character</label>
+            <select  name='main' class="form-control custom-select" id="main" ngModel>
+              <option name='main' *ngFor='let character of characters' [value]='character.Name' >{{character.Name}}</option>
+           </select>
+        </div>
+          <div class="form-group">
+              <label for="secondary">Secondary Character</label>
+              <select name='secondary' class="form-control custom-select" id="secondary" ngModel>
+                <option  name='secondary' *ngFor='let character of characters'>{{character.Name}}</option>
+                </select>
+          </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <br>
+                <input type="radio" name="gender" value="Male" ngModel> Male<br>
+                <input type="radio" name="gender" value="Female" ngModel> Female<br>
+                <input type="radio" name="gender" value="Other" ngModel> Other  
+              </div>
+            <div class="form-group">
+                <label for="elite">Elite Status</label>
+                <br>
+                <input type="radio" name="elite" [value]=true ngModel> Yes<br>
+                <input checked type="radio" name="elite" [value]=false  ngModel> No<br>
+            </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-secondary" [routerLink]="['/login']">Back</button>
+      </div>
+    </form>
+    <div *ngIf = "invalidInfo" class="alert alert-danger"> Username Taken! Try Another Username. </div>
+  </div>
+</div>

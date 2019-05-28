@@ -1,0 +1,33 @@
+<div class="col-md-6 card text-center">
+  <div class= "card-header">
+    Player Details 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Username: {{ (player$ | async)?.username }}</h5>
+    <img class="card-text" style="width:100px;height:100px;" src="{{(player$ | async)?.picture}}">
+    <p class="card-text">Name: {{ (player$ | async)?.name }} </p>
+    <p class="card-text">Gender: {{ (player$ | async)?.gender }} </p>
+    <p class="card-text">Main: {{ (player$ | async)?.main }}
+                         Secondary: {{ (player$ | async)?.secondary}} 
+    </p>
+    <p class="card-text">Win Ratio: {{ winRatio }} </p>
+    <p class="card-text">W: {{ (player$ | async)?.wins}} 
+                         L: {{ (player$ | async)?.losses}}
+    </p>
+    <p class="card-text">Elite: {{ (player$ | async)?.elite}} </p>
+  <form #gameForm="ngForm" (ngSubmit)='sendMatch(gameForm.value)' 
+  method="put">
+    <p><input #box type="checkbox" (change)="0"> Did you play a match with this person?<br></p>
+    <div *ngIf="box.checked">
+      <p><a> Who Won? </a>
+        &nbsp;
+        <input type='radio' name="winner" value="you" ngModel> You &nbsp;
+        <input type='radio' name="winner" value="other" ngModel> {{this.profileUser.username}}<br>
+      </p>
+    </div>
+    <button *ngIf="box.checked" type='submit' class="btn btn-primary">Submit Game</button>
+    <button class="btn btn-outline-primary" (click)='onBack()'>Go back</button>
+    <div *ngIf='this.sameUserGame' class='alert alert-danger'>Stop Playing With Yourself!</div>
+  </form>
+  </div>
+</div>

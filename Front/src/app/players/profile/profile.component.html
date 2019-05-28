@@ -1,0 +1,53 @@
+<div class="card col-sm-4 mx-auto" >
+  <div class='card-body'>
+    <form #editForm='ngForm' (ngSubmit)='submitEdit(editForm.value)'>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input name='name' type="fullName" class="form-control" id="fullName"  [(ngModel)]='profile.name' required>
+        </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input name='username' class="form-control" id="Username"  placeholder="Enter Username"    [(ngModel)]='profile.username' required>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input name='password' type="password" class="form-control" id="password" placeholder="Password"   ngModel required>
+      </div>
+        <div class="form-group">
+            <label for="main">Main Character</label>
+            <select  name='main' class="form-control custom-select" id="main"   [(ngModel)]='profile.main'>
+              <option name='main' *ngFor='let character of characters' [value]='character.Name' >{{character.Name}}</option>
+           </select>
+        </div>
+          <div class="form-group">
+              <label for="secondary">Secondary Character</label>
+              <select name='secondary' class="form-control custom-select" id="secondary"   [(ngModel)]='profile.secondary'>
+                <option  name='secondary' *ngFor='let character of characters'>{{character.Name}}</option>
+                </select>
+          </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <br>
+                <input type="radio" name="gender" value="Male"   [(ngModel)]='profile.gender' > Male<br>
+                <input type="radio" name="gender" value="Female" [(ngModel)]='profile.gender'> Female<br>
+                <input type="radio" name="gender" value="Other" [(ngModel)]='profile.gender'> Other  
+              </div>
+            <div class="form-group">
+                <label for="elite">Elite Status</label>
+                <br>
+                <input type="radio" name="elite" [value]=true [(ngModel)]='profile.elite'> Yes<br>
+                <input checked type="radio" name="elite" [value]=false  [(ngModel)]='profile.elite'> No<br>
+            </div>
+            <input type="file" (change)="onFileSelect($event)" #fileInput>
+          
+            <button type="button" (click)="onUpload()">Upload</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      
+        <button class="btn btn-secondary" [routerLink]="['/login']">Back</button>
+      </div>
+    </form>
+    <div *ngIf = 'savedProfile' class='alert alert-success'> Your new profile has been saved!</div>
+    <div *ngIf = "invalidInfo" class="alert alert-danger"> Username Taken! Try Another Username. </div>
+  </div>
+</div>
